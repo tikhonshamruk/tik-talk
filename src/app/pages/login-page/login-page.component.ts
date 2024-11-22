@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -12,15 +13,19 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class LoginPageComponent{
   myForm : FormGroup 
 
-  constructor(){
+  constructor(private authService: AuthService){
     this.myForm = new FormGroup({
-      name: new FormControl(null),
-      email: new FormControl(null)
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
   }
    
   
   onSubmit() {
-    console.log(this.myForm?.value)
+    if(this.myForm.valid){
+      this.authService.login(this.myForm.value).subscribe(response=>{
+        console.log(response)
+      })
+    }
   }
 }
