@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-display: swap;
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 500;
+    src: url('assets/fonts/JetBrainsMono-Medium.woff2') format('woff2')
+}
+
+:root{
+    --light-color: #FFFFFF;
+    --dark-color: #000000;
+    --primary-color:#AE7AFF;
+}
+
+*{
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-family: "JetBrains Mono", sans-serif;
+}
+
+.skill-tag{
+    border: 1px solid var(--light-color);
+    display: inline;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 4px;
+    border-radius: 4px;
+    line-height: 16px;
+}
+
+.btn{
+    border: none;
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    width: 100%;
+    border-radius: 2px;
+}
+
+h1{
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 56px;
+    color: var(--light-color);
+    margin-bottom: 60px;
+}
+
+.label-form{
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 16px;   
+}
+
+.input-form{
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    padding: 12px 20px;
+    background-color: var(--dark-color);
+    border: 1px solid var(--light-color);
+    color: var(--light-color) ;
+    border-radius: 2px;
+
+}

@@ -1,0 +1,31 @@
+.profile-card{
+    border: 1px solid var(--light-color);
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 400px 1fr;
+    grid-gap: 32px;
+    align-items: center;
+}
+
+.profile-card-logo{
+    display: grid;
+    grid-template-columns: 71px 1fr;
+    grid-gap:20px;
+    align-items: center;
+}
+
+.profile-name{
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+
+.profile-card-skill-tag{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile-logo{
+    border-radius: 50%;
+}

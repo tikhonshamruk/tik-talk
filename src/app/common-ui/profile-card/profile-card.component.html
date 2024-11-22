@@ -1,0 +1,20 @@
+<div class="profile-card">
+    <div class="profile-card-logo">
+       <div>
+        <img class="profile-logo" [src]="profile?.avatarUrl | urlPipe" width="71px" height="71px" alt="logo">
+       </div>
+       <div class="profile-name">
+        <p>{{profile?.firstName}} {{[profile?.lastName]}}</p>
+        <p>{{profile?.username}}</p>
+       </div>
+    </div>
+    <div>
+        <p>{{profile?.description}}</p>
+    </div>
+    <div class="profile-card-skill-tag">
+        <div *ngFor="let stack of profile?.stack" class="skill-tag">{{stack}}</div>
+    </div>
+    <div class="profile-card-button-action">
+        <button class="btn">Подписаться</button>
+    </div>
+</div>
