@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LoginPageComponent{
   myForm : FormGroup 
-
+  router: Router = inject(Router)
   constructor(private authService: AuthService){
     this.myForm = new FormGroup({
       username: new FormControl(null, Validators.required),
@@ -24,7 +25,8 @@ export class LoginPageComponent{
   onSubmit() {
     if(this.myForm.valid){
       this.authService.login(this.myForm.value).subscribe(response=>{
-        console.log(response)
+        console.log('response', response)
+        this.router.navigate([''])
       })
     }
   }
