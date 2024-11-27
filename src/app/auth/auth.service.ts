@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AuthInterface } from './auth.interface';
 import { catchError, tap, throwError } from 'rxjs';
@@ -9,13 +9,14 @@ import { catchError, tap, throwError } from 'rxjs';
 })
 export class AuthService {
 
+
   router = inject(Router)
 
   constructor(private http:HttpClient) { }
 
   token: string | null = null
   refreshToken: string | null = null 
-
+  
   get isAuth(){
     if(!this.token){
       this.token = localStorage.getItem('token')
@@ -33,13 +34,31 @@ export class AuthService {
     console.log(payload.password)
     return this.http.post<AuthInterface>(`${this.apiUrl}token`, fd).pipe(
       tap(value  => {
+        console.log('pipe-console', localStorage.key)
         this.token = value.access_token
         this.refreshToken = value.refresh_token
         localStorage.setItem('token',this.token)
         localStorage.setItem('refreshToken',this.refreshToken)
       }
-      )
+      ),
+      catchError(this.handleError)
     )
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.log('localStorage', localStorage.getItem('token'))
+    // Обработка ошибок авторизации
+    if (error.status === 401) {
+      console.error('Несанкционированный доступ - ошибка 401');
+      // Здесь можно добавить логику для перенаправления на страницу входа или уведомления пользователя
+    }
+    // Обработка сетевых ошибок
+    else if (error.status === 0) {
+      console.error('Сетевая ошибка - проверьте подключение к интернету');
+    } else {
+      console.error(`Ошибка: ${error.status}, сообщение: ${error.message}`);
+    }
+    return throwError('Что-то пошло не так; попробуйте еще раз позже.');
   }
 
   refreshAuthToken(){
