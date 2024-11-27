@@ -15,4 +15,8 @@ export class ProfileService {
   getData(): Observable<ProfileInterface[]>{
     return this.http.get<ProfileInterface[]>(`${this.apiUrl}/account/test_accounts`)
   }
+
+  getMe(): Observable<ProfileInterface>{
+    return this.http.get<ProfileInterface>(`${this.apiUrl}/account/me`)
+  }
 }

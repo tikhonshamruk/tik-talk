@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ProfileService } from './../../../data/services/profile.service';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,6 +9,16 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit{
 
+  profileService: ProfileService = inject(ProfileService)
+
+ngOnInit(): void {
+
+  this.profileService.getMe().subscribe(
+    (value)=>{
+      console.log(value)
+    }
+  )
+}
 }
