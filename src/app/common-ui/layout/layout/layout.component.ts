@@ -15,10 +15,10 @@ export class LayoutComponent implements OnInit{
 
 ngOnInit(): void {
 
-  this.profileService.getMe().subscribe(
-    (value)=>{
-      console.log(value)
-    }
-  )
+  // this.profileService.getMe().subscribe(
+  //   (value)=>{
+  //     console.log(value)
+  //   }
+  // )
 }
 }

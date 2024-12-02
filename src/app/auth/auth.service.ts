@@ -27,20 +27,16 @@ export class AuthService {
 
   apiUrl = 'https://icherniakov.ru/yt-course/auth/';
   login(payload:{username: string,password:string}){
+    
     const fd : FormData = new FormData()
     fd.append('username', payload.username)
     fd.append('password', payload.password)
-    console.log(payload.username)
-    console.log(payload.password)
-    return this.http.post<AuthInterface>(`${this.apiUrl}token`, fd).pipe(
+    return this.http.post<AuthInterface>(`${this.apiUrl}token`,fd).pipe(
       tap(value  => {
-        console.log('pipe-console', localStorage.key)
-        this.token = value.access_token
-        this.refreshToken = value.refresh_token
-        localStorage.setItem('token',this.token)
-        localStorage.setItem('refreshToken',this.refreshToken)
-      }
-      ),
+        this.saveToken(value)
+       }
+      )
+      ,
       catchError(this.handleError)
     )
   }
@@ -61,32 +57,36 @@ export class AuthService {
     return throwError('Что-то пошло не так; попробуйте еще раз позже.');
   }
 
-  refreshAuthToken(){
-    return this.http.post<AuthInterface>(`${this.apiUrl}refresh`,
-      {
-        refresh_token: this.refreshToken
-      }
-    ).pipe(
-      tap(val => {
-        this.token = val.access_token
-        this.refreshToken = val.refresh_token
-        localStorage.setItem('token',this.token)
-        localStorage.setItem('refreshToken',this.refreshToken)
-      }),
-      catchError(
-        err => {
-          this.logout()
-          return throwError(err)
-        }
-      )
-    )
-  }
+  // refreshAuthToken(){
+  //   return this.http.post<AuthInterface>(`${this.apiUrl}refresh`,
+  //     {
+  //       refresh_token: this.refreshToken
+  //     }
+  //   ).pipe(
+  //     tap(val => {
+  //       this.saveToken(val)
+  //     }),
+  //     catchError(
+  //       err => {
+  //         this.logout()
+  //         return throwError(err)
+  //       }
+  //     )
+  //   )
+  // }
 
-  logout(){
-    localStorage.clear()
-    this.token = null
-    this.refreshToken = null
-    this.router.navigate(['/login'])
+  // logout(){
+  //   localStorage.clear()
+  //   this.token = null
+  //   this.refreshToken = null
+  //   this.router.navigate(['/login'])
+  // }
+
+  saveToken(res: AuthInterface) {
+    this.token = res.access_token
+    this.refreshToken = res.refresh_token
+    localStorage.setItem('token',this.token)
+    localStorage.setItem('refreshToken',this.refreshToken)
   }
 
   
