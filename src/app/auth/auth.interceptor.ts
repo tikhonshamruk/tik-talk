@@ -6,7 +6,7 @@ import { ProfileInterface } from '../data/interfaces/profile.interface';
 import { AuthInterface } from './auth.interface';
 
 
-let isRefreshing = false
+// let isRefreshing = false
 
 export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
 
@@ -28,22 +28,22 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
 
         return next(req)
 
-    const authServer = inject(AuthService)
+    // const authServer = inject(AuthService)
 
-    const token : null | string = authServer.token
+    // const token : null | string = authServer.token
 
-    if(!token) return next(req); 
+    // if(!token) return next(req); 
 
-      if(isRefreshing){
-        return refreshAndProcces(authServer, req, next)
-      }
+    //   if(isRefreshing){
+    //     return refreshAndProcces(authServer, req, next)
+    //   }
 
-      const addToken = (req: HttpRequest<any>, token:string) => {
-        return req.clone({
-          setHeaders : {
-            Authorization: `Bearer ${token}`
-          }
-        })
+    //   const addToken = (req: HttpRequest<any>, token:string) => {
+    //     return req.clone({
+    //       setHeaders : {
+    //         Authorization: `Bearer ${token}`
+    //       }
+    //     })
     //   }
 
     //  req = req.clone({
@@ -65,19 +65,19 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
     //   })
     // )
 
-    // function refreshAndProcces(authServer: AuthService, req: HttpRequest<any>, next: HttpHandlerFn){
-    //   if(!isRefreshing){
-    //     isRefreshing = true
-    //     return authServer.refreshAuthToken()
-    //     .pipe(
-    //       switchMap(res =>{
-    //         isRefreshing = false
-    //         return next(addToken(req, res.access_token))
-    //       })
-    //     )
-    //   }
-    //   return next(addToken(req, authServer.token!))
-    // }
+    function refreshAndProcces(authServer: AuthService, req: HttpRequest<any>, next: HttpHandlerFn){
+      if(!isRefreshing){
+        isRefreshing = true
+        return authServer.refreshAuthToken()
+        .pipe(
+          switchMap(res =>{
+            isRefreshing = false
+            return next(addToken(req, res.access_token))
+          })
+        )
+      }
+      return next(addToken(req, authServer.token!))
+    }
 
 
     
