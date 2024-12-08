@@ -46,31 +46,31 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
     //     })
     //   }
 
-    //  req = req.clone({
-    //     setHeaders : {
-    //       Authorization: `Bearer ${token}`
-    //     }
-    //   })
-    // return next(req).pipe(tap(event => {
-    //   console.log(event)
-    // }));
+     req = req.clone({
+        setHeaders : {
+          Authorization: `Bearer ${token}`
+        }
+      })
+    return next(req).pipe(tap(event => {
+      console.log(event)
+    }));
 
-    // return next(addToken(req, token)).pipe(
-    //   catchError(err=>{
-    //     console.log('Произошла ошибка:', err)
-    //     if(err.status === 403){
-    //       return refreshAndProcces(authServer , req, next)
-    //     }
-    //     return throwError(err)
-    //   })
-    // )
+    return next(addToken(req, token)).pipe(
+      catchError(err=>{
+        console.log('Произошла ошибка:', err)
+        if(err.status === 403){
+          return refreshAndProcces(authServer , req, next)
+        }
+        return throwError(err)
+      })
+    )
 
     function refreshAndProcces(authServer: AuthService, req: HttpRequest<any>, next: HttpHandlerFn){
       if(!isRefreshing){
         isRefreshing = true
         return authServer.refreshAuthToken()
         .pipe(
-          switchMap(res =>{
+          switchMap(res =>{ 
             isRefreshing = false
             return next(addToken(req, res.access_token))
           })
@@ -78,7 +78,4 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
       }
       return next(addToken(req, authServer.token!))
     }
-
-
-    
   } 
