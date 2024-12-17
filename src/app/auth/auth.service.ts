@@ -20,7 +20,6 @@ export class AuthService {
   get isAuth(){
     if(!this.token){
       this.token = localStorage.getItem('token')
-      this.refreshToken = localStorage.getItem('refreshToken')
     }
      return !!this.token
   }
@@ -57,30 +56,13 @@ export class AuthService {
     return throwError('Что-то пошло не так; попробуйте еще раз позже.');
   }
 
-  // refreshAuthToken(){
-  //   return this.http.post<AuthInterface>(`${this.apiUrl}refresh`,
-  //     {
-  //       refresh_token: this.refreshToken
-  //     }
-  //   ).pipe(
-  //     tap(val => {
-  //       this.saveToken(val)
-  //     }),
-  //     catchError(
-  //       err => {
-  //         this.logout()
-  //         return throwError(err)
-  //       }
-  //     )
-  //   )
-  // }
-
-  // logout(){
-  //   localStorage.clear()
-  //   this.token = null
-  //   this.refreshToken = null
-  //   this.router.navigate(['/login'])
-  // }
+  refreshAuthToken(){
+    return this.http.post<AuthInterface>(`${this.apiUrl}refresh`,
+      {refresh_token : this.refreshToken}
+    ).pipe(
+      tap(val => this.saveToken(val))
+    )
+  }
 
   saveToken(res: AuthInterface) {
     this.token = res.access_token
@@ -88,6 +70,4 @@ export class AuthService {
     localStorage.setItem('token',this.token)
     localStorage.setItem('refreshToken',this.refreshToken)
   }
-
-  
 }
