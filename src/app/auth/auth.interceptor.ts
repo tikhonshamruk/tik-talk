@@ -6,7 +6,7 @@ import { ProfileInterface } from '../data/interfaces/profile.interface';
 import { AuthInterface } from './auth.interface';
 
 
-// let isRefreshing = false
+let isRefreshing = false
 
 export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
 
@@ -15,6 +15,11 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
    const token = authService.token
 
     if(!token) return next(req)
+
+      if(isRefreshing){
+        return refreshAndProceed()
+      }
+
 
       const addToken = (req:HttpRequest<any>, token:string)=>{
         return  req = req.clone({
@@ -35,12 +40,15 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
 
     function refreshAndProceed(): Observable<any> {
       // Реализуйте логику обновления токена и возвращайте Observable
-      return authService.refreshAuthToken().pipe(
-        switchMap((res)=>{
-          return next(addToken(req, res.access_token))
-        })
-      )
+      if(!isRefreshing){
+        isRefreshing = true;
+        return authService.refreshAuthToken().pipe(
+          switchMap((res)=>{
+            isRefreshing = false
+            return next(addToken(req, res.access_token))
+          })
+        )
+      }
+      return next(addToken(req,authService.token!))
     }
-
-    
   } 

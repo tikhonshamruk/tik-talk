@@ -5,3 +5,15 @@
     align-items: center;
     margin: 0 7%;
 }
+
+.password-input{
+    position: relative;
+}
+
+.input-img{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 12px;
+    cursor: pointer;
+}

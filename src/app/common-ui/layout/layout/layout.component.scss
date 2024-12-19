@@ -1,0 +1,14 @@
+.layout-container{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.layout-sidebar {
+    width: 300px;
+}
+
+.wrapper {
+    flex: 1; /* Занимает оставшееся пространство */
+    overflow: auto; /* Добавляем прокрутку, если контент превышает доступное пространство */
+}

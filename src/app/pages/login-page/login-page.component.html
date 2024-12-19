@@ -9,14 +9,21 @@
          class="input-form" placeholder="Введите логин">
     </label>
 
-    <label for="" class="label-form">
-        Пароль
-        <input
-        formControlName="password"
-         class="input-form" placeholder="Введите пароль">
-    </label>
-
-    <button class="btn" type="submit">Войти</button>
+    
+        <label for="" class="label-form">
+            Пароль
+            <div class="password-input">
+                <input
+                [type] = "passwordVisible() ? 'text' : 'password'"
+                formControlName="password"
+                 class="input-form" placeholder="Введите пароль">
+    
+                 <img class="input-img" (click)="passwordVisible.set(!passwordVisible())" src="../assets/Icon.png" alt="">
+            </div>
+           
+        </label>
+    
+     <button class="btn" type="submit">Войти</button>
 </form>
 
 <img src="../assets/Content.svg" alt="logo">

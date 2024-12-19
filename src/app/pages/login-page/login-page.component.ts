@@ -16,6 +16,8 @@ export class LoginPageComponent{
   myForm : FormGroup 
   router: Router = inject(Router)
 
+  passwordVisible = signal(false)
+
   constructor(private authService: AuthService){
     this.myForm = new FormGroup({
       username: new FormControl(null, Validators.required),
