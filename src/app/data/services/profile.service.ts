@@ -20,3 +20,4 @@ export class ProfileService {
     return this.http.get<ProfileInterface>(`${this.apiUrl}/account/me`)
   }
 }
+ 
