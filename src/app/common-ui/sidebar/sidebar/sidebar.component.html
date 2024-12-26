@@ -3,11 +3,22 @@
     <nav>
         <ul class="sidebar-menu">
             <li *ngFor="let item of items">
-                <button class="sidebar-button">
+                <a class="sidebar-button"
+                [routerLink]="item.link">
                     <svg [icon]="item.icon"></svg>
                     <span>{{item.span}}</span>
-                </button>
+                </a>
             </li>
         </ul>
     </nav>
+
+    <div class="subscribers medium">Подписчики</div>
+
+    <!-- <app-subscriber></app-subscriber> -->
+
+    <a
+    [routerLink]="['/login']" class="all-subscribers">
+        <span>Все Подписчики</span>
+        <img src="../assets/Arrow.svg" alt="">
+    </a>
 </div>

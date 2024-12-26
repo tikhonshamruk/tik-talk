@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { AppSvgIconComponent } from '../../app-svg-icon/app-svg-icon.component';
 import { CommonModule } from '@angular/common';
+import { SubscriberComponent } from '../../subscriber/subscriber.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [AppSvgIconComponent, CommonModule],
+  imports: [AppSvgIconComponent, CommonModule, SubscriberComponent,RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
@@ -14,15 +16,18 @@ export class SidebarComponent {
   items = [
     {
       icon: 'home', 
-      span: 'Moя страница'
+      span: 'Moя страница',
+      link: 'home'
     },
     {
       icon: 'message',
-      span: 'Чаты'
+      span: 'Чаты',
+      link: 'message'
     },
     {
       icon: 'search',
-      span: 'Поиск'
+      span: 'Поиск',
+      link: 'search'
     }
   ]
 }

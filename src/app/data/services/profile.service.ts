@@ -19,5 +19,7 @@ export class ProfileService {
   getMe(): Observable<ProfileInterface>{
     return this.http.get<ProfileInterface>(`${this.apiUrl}/account/me`)
   }
+
+  
 }
  
