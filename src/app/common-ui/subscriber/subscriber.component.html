@@ -1,5 +1,5 @@
 <div class="all-users">
-    <img src="" alt="">
+    <img width="32px" height="32px" [src]="profile?.avatarUrl | urlPipe" [alt]="profile?.firstName">
 
-    <span></span>
+    <span>{{profile?.firstName}} {{profile?.lastName}}</span>
 </div>

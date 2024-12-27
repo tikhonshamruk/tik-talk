@@ -14,11 +14,29 @@
 
     <div class="subscribers medium">Подписчики</div>
 
-    <!-- <app-subscriber></app-subscriber> -->
-
+    <div *ngFor="let subscriber of subscribers$ | async">
+        <app-subscriber [profile]="subscriber"></app-subscriber>
+      </div>
+ 
     <a
     [routerLink]="['/login']" class="all-subscribers">
         <span>Все Подписчики</span>
         <img src="../assets/Arrow.svg" alt="">
     </a>
+
+    <footer class="sidebar-footer">
+        @if(profile$(); as profile$){ 
+            @if(profile$.avatarUrl){
+                <img [src]="profile$.avatarUrl | urlPipe" alt="">
+            }
+            @else{
+                <img src="../assets/profile.svg">
+                }
+                <div class="medium-text">{{profile$.username}}</div>
+
+                <a class="setting-btn" [routerLink]="['/profile']">
+                    <img class="profile-img" src="../assets/cyrcle.svg">
+                </a>
+        }
+    </footer>
 </div>

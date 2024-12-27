@@ -11,16 +11,6 @@ import { SearchComponent } from '../../../pages/search/search/search.component';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit{
+export class LayoutComponent {
 
-  profileService: ProfileService = inject(ProfileService)
-
-ngOnInit(): void {
-
-  this.profileService.getMe().subscribe(
-    (value)=>{
-      console.log('Value',value)
-    }
-  )
-}
 }
