@@ -1,1 +1,8 @@
-<app-profile-header [profile]="me"></app-profile-header>
+<header>
+    <app-profile-header [profile]="me"></app-profile-header>
+    <a class="btn profile-header-btn" [routerLink]="['/setting']">
+        Редоктировать 
+        <img src="../assets/cyrcle.svg" alt="">
+    </a>
+</header>
+

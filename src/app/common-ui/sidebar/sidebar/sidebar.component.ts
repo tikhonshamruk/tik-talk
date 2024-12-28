@@ -41,6 +41,7 @@ export class SidebarComponent implements OnInit{
   ]
   ngOnInit(): void {
     firstValueFrom(this.profileService.getMe())
+    console.log('this.profile$', this.profile$())
   }
 
 }

@@ -1,9 +1,12 @@
 @if(profile(); as profile){ 
     @if(profile.avatarUrl){
-        <img [src]="profile.avatarUrl | urlPipe" alt="">
+        <img class="profile-header-img" [src]="profile.avatarUrl | urlPipe" alt="">
     }
     @else{
-        <img src="../assets/profile.svg">
+        <img class="profile-header-img" src="../assets/profile.svg">
         }
-        <div>{{profile.username}} {{profile.lastName}}</div>
+        <div class="profile-text">
+            <div class="medium-name">{{profile.firstName}}</div>
+           <div class="medium-username">{{profile.username}}</div>
+        </div>
 }
