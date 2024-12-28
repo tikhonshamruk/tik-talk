@@ -1,0 +1,9 @@
+@if(profile(); as profile){ 
+    @if(profile.avatarUrl){
+        <img [src]="profile.avatarUrl | urlPipe" alt="">
+    }
+    @else{
+        <img src="../assets/profile.svg">
+        }
+        <div>{{profile.username}} {{profile.lastName}}</div>
+}

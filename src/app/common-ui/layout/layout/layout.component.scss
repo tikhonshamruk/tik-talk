@@ -1,14 +1,22 @@
 .layout-container{
     display: flex;
     flex-direction: row;
-
+    background-image: url('../../../../assets/background.png');
+    background-color: none;
+  background-size: cover; /* или contain, или другое значение */
+  background-repeat: no-repeat;
+  height: 100vh; /* Устанавливает высоту на 100% высоты видимой области */
+  width: 100%; /* Устанавливает ширину на 100% */
+    
 }
 
 .layout-sidebar {
     width: 300px;
+   background-color: var(--dark-color);
 }
 
 .wrapper {
     flex: 1; /* Занимает оставшееся пространство */
     overflow: auto; /* Добавляем прокрутку, если контент превышает доступное пространство */
+    padding: 24px;
 }
