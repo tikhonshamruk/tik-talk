@@ -1,5 +1,7 @@
 :host{
-    
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 header{
@@ -17,7 +19,19 @@ header{
     gap:12px;
 
     img{
-        color: var(--dark-color);
-        
+        color: var(--dark-color);   
     }
+}
+
+.profile-page__body{
+    display: grid;
+    grid-template-columns: 1fr 340px;
+}
+
+.profile-page__post{
+
+}
+
+.profile-page__main{
+
 }

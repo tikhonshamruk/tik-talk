@@ -6,3 +6,17 @@
     </a>
 </header>
 
+<main class="profile-page__body">
+    <div class="profile-page__post"></div>
+
+    <div class="profile-page__main">
+        <h3>Подписчики</h3>
+        <div class="profile-page__main-subscribers"></div>
+        @for(subscriber of subscribers$ | async; track subscriber){
+            <a [routerLink]="['/profile']">
+                <img [src]="subscriber?.avatarUrl | urlPipe" width="36px" height="36px" alt="">
+            </a>
+        }
+    </div>
+</main>
+
