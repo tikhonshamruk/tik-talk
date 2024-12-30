@@ -35,3 +35,13 @@ header{
 .profile-page__main{
 
 }
+
+.profile-page__main-subscribers{
+    margin-top: 16px;
+    display: flex; 
+    flex-direction: row;
+    gap:6px;
+    .main-link{
+        border-radius: 50%;
+    }
+}

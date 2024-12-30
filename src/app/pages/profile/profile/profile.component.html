@@ -10,13 +10,30 @@
     <div class="profile-page__post"></div>
 
     <div class="profile-page__main">
-        <h3>Подписчики</h3>
-        <div class="profile-page__main-subscribers"></div>
-        @for(subscriber of subscribers$ | async; track subscriber){
-            <a [routerLink]="['/profile']">
-                <img [src]="subscriber?.avatarUrl | urlPipe" width="36px" height="36px" alt="">
-            </a>
-        }
+        <h3 class="medium-800">Подписчики</h3>
+        <div class="profile-page__main-subscribers">
+            @for(subscriber of subscribers$ | async; track subscriber){
+                <div class="main-link">
+                    <a [routerLink]="['/profile']" >
+                        <img [src]="subscriber?.avatarUrl | urlPipe" width="36px" height="36px" alt="">
+                    </a>
+                </div>
+                
+            }
+        </div>
+        <h3 class="medium-800" [ngStyle]="{'margin-top': '30px'}">Навыки</h3>
+
+        <div [ngStyle]="{'margin-top': '16px'}">
+            @for(skill of ['HTML','CSS','Docker','Angular', 'React']; track skill){
+                <div class="skill-tag ">{{skill}}</div>
+            }
+        </div>
+
+        <h3 class="medium" [ngStyle]="{'margin-top': '32px'}">
+            Список навыков, который мы обсудили выше, - основа резюме,
+            но не единственная его часть. Также можно рассказать о себе в
+            классическом смысле - этот раздел можно добавить в сопроводительное письмо.
+        </h3>
     </div>
 </main>
 

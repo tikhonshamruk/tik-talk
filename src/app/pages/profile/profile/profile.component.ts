@@ -19,5 +19,5 @@ export class ProfileComponent {
   me = this.profileService.profileSignal()
 
   subscribers$ = this.profileService.getSubscriber()
- 
+
 }

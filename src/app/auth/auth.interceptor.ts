@@ -14,6 +14,14 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
    const authService = inject(AuthService);
    const token = authService.token
 
+   const addToken = (req:HttpRequest<any>, token:string)=>{
+    return  req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  }
+
     if(!token) return next(req)
 
       if(isRefreshing){
@@ -21,13 +29,7 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
       }
 
 
-      const addToken = (req:HttpRequest<any>, token:string)=>{
-        return  req = req.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-      }
+      
 
     return next(addToken(req,token)).pipe(
      catchError((error: HttpErrorResponse) => {

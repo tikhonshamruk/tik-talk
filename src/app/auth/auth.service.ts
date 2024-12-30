@@ -7,8 +7,7 @@ import { catchError, tap, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-
+export class AuthService { 
 
   router = inject(Router)
 
@@ -25,6 +24,7 @@ export class AuthService {
   }
 
   apiUrl = 'https://icherniakov.ru/yt-course/auth/';
+
   login(payload:{username: string,password:string}){
     
     const fd : FormData = new FormData()
@@ -67,7 +67,10 @@ export class AuthService {
   saveToken(res: AuthInterface) {
     this.token = res.access_token
     this.refreshToken = res.refresh_token
+     
     localStorage.setItem('token',this.token)
     localStorage.setItem('refreshToken',this.refreshToken)
+     const expirationDate= new Date(JSON.parse(atob(res.access_token.split('.')[1])).exp * 1000)
+     console.log('Expiration time:', expirationDate)
   }
 }
