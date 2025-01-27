@@ -31,5 +31,9 @@ export class ProfileService {
       map(response => response.items.slice(0,3))
     )
   }
+
+  patchProfile(profile: Partial<ProfileInterface>){
+    return this.http.patch<ProfileInterface>(`${this.apiUrl}/account/me`, profile)
+  }
 }
  
