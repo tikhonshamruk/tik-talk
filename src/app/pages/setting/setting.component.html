@@ -1,0 +1,30 @@
+<app-profile-header class="profile-setting"></app-profile-header>
+<form class="setting" [formGroup]="myForm">
+    <div class="setting-form__two">
+        <label class="tt-form__label" for="">
+            <span class="tt-form__span">Имя</span>
+            <input class="tt-form__input"
+            formControlName="firstName" placeholder="Введите данные" type="text">
+        </label>
+
+        <label class="tt-form__label" for="">
+            <span class="tt-form__span">Фамилия</span>
+            <input class="tt-form__input"
+            formControlName="lastName" placeholder="Введите данные" type="text">
+        </label>
+    </div>
+
+    <label class="tt-form__label" for="">
+        <span class="tt-form__span">Telegram username</span>
+        <input class="tt-form__input"
+        formControlName="telegramUsername"
+         placeholder="Введите данные" type="text">
+    </label>
+
+    <label class="tt-form__label" for="about">
+        <span class="tt-form__span">О себе</span>
+        <textarea id="about" class="tt-form__input"
+        formControlName="aboutMe"
+         rows="4" placeholder="Введите данные"></textarea>
+    </label>
+</form>

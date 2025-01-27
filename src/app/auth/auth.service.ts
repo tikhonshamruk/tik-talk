@@ -7,7 +7,7 @@ import { catchError, tap, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService { 
+export class  AuthService { 
 
   router = inject(Router)
 

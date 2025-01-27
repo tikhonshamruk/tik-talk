@@ -1,0 +1,27 @@
+:host{
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    gap:48px;
+    height: 100%;
+}
+
+.profile-setting{
+    flex:1
+}
+
+.setting{
+    width: 664px;
+    background-color: var(--dark-color);
+    padding: 32px;
+    border: 1px solid var(--light-color);
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.setting-form__two{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px
+}
