@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Pipe, signal } from '@angular/core';
 import { ProfileInterface } from '../interfaces/profile.interface';
 import { map, Observable, tap } from 'rxjs';
@@ -34,6 +34,18 @@ export class ProfileService {
 
   patchProfile(profile: Partial<ProfileInterface>){
     return this.http.patch<ProfileInterface>(`${this.apiUrl}/account/me`, profile)
+  }
+
+  deleteMe(){
+    return this.http.delete(`${this.apiUrl}/account/me`)
+  }
+
+  LogOut():Observable<string>{
+    return this.http.post<string>(`${this.apiUrl}/logout`,{},{
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
   }
 }
  

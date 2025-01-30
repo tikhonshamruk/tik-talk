@@ -58,7 +58,7 @@ export class  AuthService {
 
   refreshAuthToken(){
     return this.http.post<AuthInterface>(`${this.apiUrl}refresh`,
-      {refresh_token : this.refreshToken}
+      {refresh_token : localStorage.getItem("refresh_token")}
     ).pipe(
       tap(val => this.saveToken(val))
     )
@@ -67,9 +67,8 @@ export class  AuthService {
   saveToken(res: AuthInterface) {
     this.token = res.access_token
     this.refreshToken = res.refresh_token
-     
-    localStorage.setItem('token',this.token)
-    localStorage.setItem('refreshToken',this.refreshToken)
+    localStorage.setItem('token', res.access_token);
+    localStorage.setItem('refresh_token', res.refresh_token);
      const expirationDate= new Date(JSON.parse(atob(res.access_token.split('.')[1])).exp * 1000)
      console.log('Expiration time:', expirationDate)
   }

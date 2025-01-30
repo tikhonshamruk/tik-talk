@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './profile-header.component.scss'
 })
 export class ProfileHeaderComponent implements OnInit {
-  profile = input<ProfileInterface | null |undefined>()
+  profile = input<ProfileInterface | null | undefined>()
 
   ngOnInit(): void {
     console.log('this.profile',this.profile())

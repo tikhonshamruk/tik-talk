@@ -17,11 +17,24 @@
     border: 1px solid var(--light-color);
     display: flex;
     flex-direction: column;
-    gap:20px;
 }
 
 .setting-form__two{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap:20px
+}
+
+.setting-header{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.setting-footer{
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 44px 44px 1fr;
+    gap:20px;
+    align-items: center;
 }

@@ -10,9 +10,8 @@ let isRefreshing = false
 
 export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
 
-  // return next(req)
    const authService = inject(AuthService);
-   const token = authService.token
+   let token = authService.token
 
    const addToken = (req:HttpRequest<any>, token:string)=>{
     return  req = req.clone({
@@ -22,14 +21,15 @@ export const loggingInterceptorFunctional: HttpInterceptorFn = (req, next) => {
     })
   }
 
+  if(token === undefined || token === null){
+    token = localStorage.getItem("token")
+    }
+
     if(!token) return next(req)
 
       if(isRefreshing){
         return refreshAndProceed()
       }
-
-
-      
 
     return next(addToken(req,token)).pipe(
      catchError((error: HttpErrorResponse) => {
