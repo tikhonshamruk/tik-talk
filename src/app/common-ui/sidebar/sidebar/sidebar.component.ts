@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit{
     {
       icon: 'home', 
       span: 'Moя страница',
-      link: '/profile'
+      link: '/profile/me'
     },
     {
       icon: 'message',

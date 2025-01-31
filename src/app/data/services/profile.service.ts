@@ -47,5 +47,9 @@ export class ProfileService {
       })
     })
   }
+
+  getAccount(id:string):Observable<ProfileInterface>{
+    return this.http.get<ProfileInterface>(`${this.apiUrl}/account/${id}`)
+  }
 }
  

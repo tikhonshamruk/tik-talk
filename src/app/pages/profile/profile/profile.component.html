@@ -1,5 +1,5 @@
 <header>
-    <app-profile-header [profile]="me"></app-profile-header>
+    <app-profile-header [profile]="profile$ | async"></app-profile-header>
     <a class="btn profile-header-btn" [routerLink]="['/setting']">
         Редоктировать 
         <img src="../assets/cyrcle.svg" alt="">
@@ -14,7 +14,7 @@
         <div class="profile-page__main-subscribers">
             @for(subscriber of subscribers$ | async; track subscriber){
                 <div class="main-link">
-                    <a [routerLink]="['/profile']" >
+                    <a [routerLink]="'/profile/' + subscriber.id" >
                         <img [src]="subscriber?.avatarUrl | urlPipe" width="36px" height="36px" alt="">
                     </a>
                 </div>
@@ -23,15 +23,14 @@
         <h3 class="medium-800" [ngStyle]="{'margin-top': '30px'}">Навыки</h3>
 
         <div [ngStyle]="{'margin-top': '16px'}">
-            @for(skill of ['HTML','CSS','Docker','Angular', 'React']; track skill){
+            @for(skill of (profile$ | async)?.stack; track skill){
                 <div class="skill-tag ">{{skill}}</div>
             }
         </div>
 
         <h3 class="medium" [ngStyle]="{'margin-top': '32px'}">
-            Список навыков, который мы обсудили выше, - основа резюме,
-            но не единственная его часть. Также можно рассказать о себе в
-            классическом смысле - этот раздел можно добавить в сопроводительное письмо.
+            Список навыков, который мы обсудили выше, — основа резюме, но не единственная его часть. Также можно рассказать о себе в классическом смысле — этот раздел можно добавить в сопроводительное письмо.
+            {{ (profile$ | async)?.description }}
         </h3>
     </div>
 </main>
