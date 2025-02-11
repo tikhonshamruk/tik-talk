@@ -4,14 +4,14 @@ import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-login-page',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss'
+  standalone: true, // Используем standalone компонент
+  imports: [ReactiveFormsModule, CommonModule], // Импортируем необходимые модули
+  templateUrl: './login-page.component.html', // Укажите путь к вашему шаблону
+  styleUrl: './login-page.component.scss' // Укажите путь к вашим стилям
 })
+
 export class LoginPageComponent{
   myForm : FormGroup 
   router: Router = inject(Router)

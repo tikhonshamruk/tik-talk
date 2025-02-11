@@ -45,7 +45,7 @@ export class ProfileService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    })
+    })  
   }
 
   getAccount(id:string):Observable<ProfileInterface>{

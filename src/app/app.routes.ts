@@ -9,7 +9,8 @@ import { SettingComponent } from './pages/setting/setting.component';
 export const routes: Routes = [
     {
         path: "", component: LayoutComponent, children: [
-            { path: "", component: SearchComponent },
+            {path: "", redirectTo: 'profile/me', pathMatch: 'full'},
+            { path: "search", component: SearchComponent },
             { path: "profile/:id", component: ProfileComponent },
             { path: "setting", component: SettingComponent}
         ],
