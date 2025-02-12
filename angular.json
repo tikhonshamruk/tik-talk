@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/tik-talk",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -96,7 +96,13 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+        "repo": "https://github.com/tikhoshamruk/tik-talk.git",
+        "branch": "gh-pages",
+        "dir": "dist/tik-talk/browser"
+      }
+
         }
       }
     }
