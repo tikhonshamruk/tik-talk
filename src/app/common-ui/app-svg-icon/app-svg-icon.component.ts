@@ -23,6 +23,6 @@ export class AppSvgIconComponent {
   @Input() icon: string = '';
 
   get href(){
-    return `../assets/${this.icon}-icon.svg#${this.icon}`
+    return `assets/${this.icon}-icon.svg#${this.icon}`
   }
 }
